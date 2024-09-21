@@ -1,0 +1,95 @@
+//importing all libraries
+
+import pandas as pd
+import numpy as np
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+//
+dataset = pd.read_csv('/kaggle/input/sms-spam-collection-dataset/spam.csv',encoding = 'latin')
+
+//
+dataset = pd.DataFrame(dataset, columns=['v1', 'v2'])
+dataset = dataset.rename(columns={'v1': 'Identifier', 'v2': 'Message'})
+print(dataset.columns)
+print(dataset.head())
+
+//
+# Check the number of rows and columns
+rows, columns = dataset.shape
+
+# Print the results
+print(f"Number of rows: {rows}")
+print(f"Number of columns: {columns}")
+
+//
+dataset.loc[dataset['Identifier'] == 'spam', 'Identifier',] = 0
+dataset.loc[dataset['Identifier'] == 'ham', 'Identifier',] = 1
+
+//
+print(dataset)
+//
+import re
+#separating the data as texts and label
+x = dataset['Message']
+y = dataset['Identifier']
+#Removing og punctuation marks
+for i in range (5572):
+    x[i]=re.sub(r"[^a-zA-Z0-9\s]","",x[i])
+
+
+//
+print(x)
+
+//
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.1, random_state = 69)
+
+//
+#vectorizataion
+feature_extraction = TfidfVectorizer(min_df = 1, stop_words = 'english', lowercase = True)
+x_train_features = feature_extraction.fit_transform(x_train)
+x_test_features = feature_extraction.transform(x_test)
+
+y_train = y_train.astype('int')
+y_test = y_test.astype('int')
+
+//
+print(x_train)
+
+//
+#traing the model
+model = LogisticRegression()
+
+//
+
+model.fit(x_train_features, y_train)
+
+//
+#evaluating
+prediction_on_training_data = model.predict(x_train_features)
+accuracy_on_training_data = accuracy_score(y_train, prediction_on_training_data)
+
+//
+print('Accuracy on training data: ', accuracy_on_training_data)
+//
+#prediciting on test data
+prediction_on_test_data = model.predict(x_test_features)
+accuracy_on_test_data = accuracy_score(y_test, prediction_on_test_data)
+
+//
+print('Accuracy on test data: ', accuracy_on_test_data)
+
+//
+a=int(input("Enter the no of sms :"))
+for i in range(a):
+    input_data=input("Enter the string :")
+    input_feature=feature_extraction.transform([input_data])
+    prediction=model.predict(input_feature)
+    if prediction[0]==1:
+        print("Ham")
+    else:
+        print("Spam")
