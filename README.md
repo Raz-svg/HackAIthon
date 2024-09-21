@@ -1,7 +1,51 @@
 # HackAIthon
-we made this project primarity on kaggle notebook ;
-[link: https://www.kaggle.com/code/booobas/notebook92e1047cb6 ]
-We have used pandas, numpy, sklearn 
-The code can be run on kaggle notebook itself or any other appropriate environment with required libraries installed 
+Spam Detector
+This project is a text classification model that detects whether a given input is spam or ham (not spam). The model was primarily developed using a Kaggle notebook.
+Project Overview
+The Spam Detector is designed to:
 
-when the code is run, it asks how many times you want to provide input and then it asks you to provide those inputs as text and gives output as spam or ham 
+Accept multiple text inputs from the user
+Process these inputs using machine learning techniques
+Classify each input as either "spam" or "ham"
+
+Technologies Used
+
+Python
+pandas
+numpy
+scikit-learn (sklearn)
+
+How to Run
+This project can be run in two ways:
+
+Kaggle Notebook:
+
+Visit our Kaggle notebook
+Run the notebook in the Kaggle environment
+
+
+Local Environment:
+
+Ensure you have Python installed
+Install the required libraries:
+Copypip install pandas numpy scikit-learn
+
+Run the script in your local Python environment
+
+
+
+Usage
+When you run the code:
+
+It will prompt you to specify how many inputs you want to provide
+For each input, you'll be asked to enter a text message
+The model will process each input and classify it as either "spam" or "ham"
+
+Contributing
+Feel free to fork this project and submit pull requests with improvements or open issues for any bugs you may find.
+
+Contact
+[https://www.kaggle.com/booobas]
+Creators:
+PT AKSHIT BADYAL 
+PT ARMAN BADYAL
