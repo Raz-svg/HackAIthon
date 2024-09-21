@@ -47,5 +47,7 @@ Feel free to fork this project and submit pull requests with improvements or ope
 Contact
 [https://www.kaggle.com/booobas]
 Creators:
-PT AKSHIT BADYAL 
+PT AKSHIT BADYAL ,
 PT ARMAN BADYAL
+Team:
+Axon
